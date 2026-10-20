@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111827" />
+    <title>Controle do Robô</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Arduino • Controle serial</p>
+          <h1>Controle do Robô</h1>
+        </div>
+        <div class="connection">
+          <span id="statusDot" class="status-dot" aria-hidden="true"></span>
+          <span id="statusText">Desconectado</span>
+          <button id="connectButton" class="button button-primary">Conectar Arduino</button>
+        </div>
+      </header>
+
+      <section id="supportWarning" class="notice" hidden>
+        Este navegador não oferece Web Serial. Abra esta página no Google Chrome ou Microsoft Edge.
+      </section>
+
+      <section class="hero-controls" aria-label="Controles principais">
+        <button class="action-card dance" data-command="DANCAR">
+          <span class="action-icon" aria-hidden="true">♪</span>
+          <span>
+            <strong>Dançar</strong>
+            <small>Apresentação de 30 segundos</small>
+          </span>
+        </button>
+
+        <button class="action-card mouth" data-command="TESTAR_BOCA">
+          <span class="action-icon" aria-hidden="true">◡</span>
+          <span>
+            <strong>Testar boca</strong>
+            <small>Movimento programado</small>
+          </span>
+        </button>
+
+        <button class="action-card stop" data-command="PARAR">
+          <span class="action-icon" aria-hidden="true">■</span>
+          <span>
+            <strong>Parar tudo</strong>
+            <small>Desliga os sinais imediatamente</small>
+          </span>
+        </button>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Movimentos de 2 segundos</p>
+            <h2>Controle individual</h2>
+          </div>
+          <button class="button button-quiet" data-command="STATUS">Atualizar estado</button>
+        </div>
+
+        <div class="servo-grid">
+          <article class="servo-card">
+            <div class="servo-title">
+              <span class="pin">D9</span>
+              <h3>Braço esquerdo</h3>
+            </div>
+            <label for="leftPulse">Pulso <output id="leftValue">1550</output> µs</label>
+            <input id="leftPulse" type="range" min="1400" max="1600" step="10" value="1550" />
+            <button id="moveLeft" class="button button-secondary">Mover esquerdo</button>
+          </article>
+
+          <article class="servo-card">
+            <div class="servo-title">
+              <span class="pin">D8</span>
+              <h3>Braço direito</h3>
+            </div>
+            <label for="rightPulse">Pulso <output id="rightValue">1550</output> µs</label>
+            <input id="rightPulse" type="range" min="1400" max="1600" step="10" value="1550" />
+            <button id="moveRight" class="button button-secondary">Mover direito</button>
+          </article>
+
+          <article class="servo-card">
+            <div class="servo-title">
+              <span class="pin">D7</span>
+              <h3>Boca</h3>
+            </div>
+            <label for="mouthPulse">Pulso <output id="mouthValue">1550</output> µs</label>
+            <input id="mouthPulse" type="range" min="1400" max="1600" step="10" value="1550" />
+            <button id="moveMouth" class="button button-secondary">Mover boca</button>
+          </article>
+        </div>
+
+        <div class="group-actions">
+          <button id="moveArms" class="button button-secondary">Mover os dois braços</button>
+          <button id="moveAll" class="button button-primary">Mover tudo</button>
+        </div>
+      </section>
+
+      <section class="panel console-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Comunicação</p>
+            <h2>Console do Arduino</h2>
+          </div>
+          <button id="clearConsole" class="button button-quiet">Limpar</button>
+        </div>
+        <pre id="console" aria-live="polite">Pronto para conectar.</pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
